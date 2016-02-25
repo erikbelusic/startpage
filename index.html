@@ -3,8 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <title>Start Page</title>
+
+    <!-- CSS Reset -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
+    <style>
+        html {
+            box-sizing: border-box;
+        }
+        *, *:before, *:after {
+            box-sizing: inherit;
+        }
+        .container {
+            height:100vh;
+            min-width: 100vw;
+            display:flex;
+        }
+        .column {
+            width:250px;
+        }
+        /*.site {*/
+            /*width:25%;*/
+            /*height:50vh;*/
+            /*border:1px solid black;*/
+            /*position:relative;*/
+        /*}*/
+        /*.overlay {*/
+            /*display:flex;*/
+            /*justify-content: center;*/
+            /*align-items: center;*/
+            /*position:absolute;*/
+            /*top:0;*/
+            /*bottom:0;*/
+            /*left:0;*/
+            /*right:0;*/
+            /*background:rgba(0,0,0,0.5);*/
+        /*}*/
+        /*a {*/
+            /*color:white;*/
+            /*font-weight:bold;*/
+            /*font-size:20px;*/
+        /*}*/
+    </style>
 </head>
-<body>
-<h1>Start Page</h1>
+<body id="app">
+<div class="container" style="width:{{ width }}">
+    <div class="column" v-for="column in columns">
+        <h2 class="column__label">{{ column.name }}</h2>
+        <ul class="list">
+            <li class="list__item" v-for="site in column.sites">
+                <a class="list__link" href="http://{{ site.url }}" >
+                    {{ site.name }}
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.16/vue.min.js"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        computed: {
+          width: function() {
+              return this.columns.length * 300 + 'px';
+          }
+        },
+        data: {
+            columns: [
+                {
+                    name: 'Social',
+                    sites: [
+                        {
+                            name: 'Facebook',
+                            url: 'facebook.com'
+                        },
+                        {
+                            name: 'Twitter',
+                            url: 'twitter.com'
+                        },
+                        {
+                            name: 'LinkedIn',
+                            url: 'linkedin.com'
+                        },
+                        {
+                            name: 'Buffer',
+                            url: 'bufferapp.com'
+                        },
+                    ]
+                },
+                {
+                    name: 'Docs',
+                    sites: [
+                        {
+                            name: 'Laravel',
+                            url: 'laravel.com/docs/5.2/'
+                        },
+                        {
+                            name: 'Vue',
+                            url: 'vuejs.org'
+                        },
+                        {
+                            name: 'Bootstrap 3',
+                            url: 'getbootstrap.com'
+                        },
+                        {
+                            name: 'Bootstrap 4',
+                            url: 'v4-alpha.getbootstrap.com'
+                        },
+                    ]
+                },
+                {
+                    name: 'Learning',
+                    sites: [
+                        {
+                            name: 'Laracasts',
+                            url: 'laracasts.com'
+                        },
+                        {
+                            name: 'Udemy',
+                            url: 'udemy.com'
+                        },
+                    ]
+                },
+            ]
+        }
+    });
+</script>
 </body>
 </html>
