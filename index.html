@@ -29,32 +29,16 @@
         	padding:0;
         }
         .list__link {
-        	padding:10px;
+        	padding:20px;
         	text-align:center;
         	display:block;
+            background:rgba(0,0,0,0.7);
+            color:white;
+            transition: background 0.5s;
         }
-        /*.site {*/
-            /*width:25%;*/
-            /*height:50vh;*/
-            /*border:1px solid black;*/
-            /*position:relative;*/
-        /*}*/
-        /*.overlay {*/
-            /*display:flex;*/
-            /*justify-content: center;*/
-            /*align-items: center;*/
-            /*position:absolute;*/
-            /*top:0;*/
-            /*bottom:0;*/
-            /*left:0;*/
-            /*right:0;*/
-            /*background:rgba(0,0,0,0.5);*/
-        /*}*/
-        /*a {*/
-            /*color:white;*/
-            /*font-weight:bold;*/
-            /*font-size:20px;*/
-        /*}*/
+        .list__link:hover {
+            background:rgba(0,0,0,0.5);
+        }
     </style>
 </head>
 <body id="app">
@@ -62,8 +46,8 @@
     <div class="column" v-for="column in columns">
         <h2 class="column__label">{{ column.name }}</h2>
         <ul class="list">
-            <li class="list__item" v-for="site in column.sites">
-                <a class="list__link" style="background:{{ randomColor() }}" href="http://{{ site.url }}" >
+            <li class="list__item" v-for="site in column.sites" style="background:url('http://free.pagepeeker.com/v2/thumbs.php?size=x&url={{ site.url }}');background-size:cover;">
+                <a class="list__link"  href="http://{{ site.url }}" >
                     {{ site.name }}
                 </a>
             </li>
