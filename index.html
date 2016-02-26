@@ -63,7 +63,7 @@
         <h2 class="column__label">{{ column.name }}</h2>
         <ul class="list">
             <li class="list__item" v-for="site in column.sites">
-                <a class="list__link" style="background:{{ randomColor }}" href="http://{{ site.url }}" >
+                <a class="list__link" style="background:{{ randomColor() }}" href="http://{{ site.url }}" >
                     {{ site.name }}
                 </a>
             </li>
